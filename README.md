@@ -1,2 +1,3 @@
 # LancheAngular
-Projeto de sistema de lanchonete com o Back-End desenvolvido en Java e o Front-End em Angular
+Projeto acadêmico de um simples sistema lanchonete destinado à matéria de Arquitetura de Software, 
+com o Back-End desenvolvido em Java e o Front-End em Angular e a conversa deles via Rest.
