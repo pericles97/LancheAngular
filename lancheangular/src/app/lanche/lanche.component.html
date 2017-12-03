@@ -1,0 +1,128 @@
+<meta charset="utf-8">
+<div class="container">
+	<h1 align="center">Cadastro de Lanche</h1>
+	<br>
+	<div class="row">
+		<div class="col-md-1">
+		</div>
+		<div class="col-md-5" align="center">
+		<h2>Cadastro</h2>
+			<div class="content">
+                   <div class="form-group">
+                   	<div class="row">
+						<form id="form">
+							<div class="form-group">
+								<label for="nome">Nome</label>
+								<input type="text" class="form-control" name="nome" [(ngModel)]="lanche.nomeLanche" placeholder="Nome" required>
+							</div>
+							<div class="form-group">
+								<label for="valor">Valor</label>
+								<input type="text" class="form-control" id="valor"name="valor" [(ngModel)]="lanche.valorLanche" placeholder="Valor" required>
+							</div>
+							<button class="btn btn-success" (click)="addLanche()">Cadastrar</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-5" align="center">
+		<h2>Listagem</h2>
+			<br>
+			<div class="content"  id="refresh">
+                   <div class="form-group">
+					<div style="border: solid;">
+						<table class="table">
+							<tr>
+								<th>ID</th>
+								<th>Nome</th>
+								<th>Valor</th>
+								<th>Ação<th>
+							</tr>
+							<tr *ngFor="let lanche of lanches">
+								<td>{{lanche.id}}</td>
+								<td>{{lanche.nomeLanche}} </td>
+								<td>{{lanche.valorLanche}}</td>
+								<td><input class="btn btn-success" data-toggle="modal" data-target="#myModal" type="submit" value="Ação"
+								(click)="carregarLanche(lanche)"/></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-1">
+		
+		</div>
+	</div>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"></h4>
+      </div>
+      <div class="modal-body">
+		<h1 align="center">Gerênciar Lanche</h1>
+		<br>
+		<div class="row">
+			<div class="col-md-3">
+			</div>
+			<div class="col-md-6" align="center">
+				<div class="content">
+					<div class="form-group">
+						<div class="row">
+							<form  id="form1">
+								<div class="form-group">
+									<label for="nome">ID</label>
+									<input type="text" class="form-control" name="id" [(ngModel)]="lanche.id" placeholder="{{lanche.id}}" disabled>
+								</div>
+								<div class="form-group">
+									<label for="nome">Nome</label>
+									<input type="text" class="form-control" name="nome" [(ngModel)]="lanche.nomeLanche" placeholder="{{lanche.nomeLanche}}" required>
+								</div>
+								<div class="form-group">
+									<label for="valor">Valor</label>
+									<input type="text" class="form-control" name="valor" [(ngModel)]="lanche.valorLanche" placeholder="{{lanche.valorLanche}}" required>
+								</div>
+								<button class="btn btn-success" data-dismiss="modal" (click)="updateLanche(lanche)">Alterar</button>
+								<button class="btn btn-danger" data-dismiss="modal" (click)="deleteLanche()">Remover</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-5">
+			</div>
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<script type="text/javascript">$(document).ready(function(){	$("#cpf").mask("999.999.999-99");});</script>
+
+
+<script>
+    jQuery(function($){
+        $(cpf).mask("999.999.999-99");  //static mask
+    });
+</script>
+<script>
+function update() {
+    $.get("response.php", function(data) {
+        $("#refresh").html(data);
+    });
+    window.setTimeout("update();", 10000);
+}
+
+</script>
